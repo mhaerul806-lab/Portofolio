@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Pribadi | Pelajar Sekolah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --accent-color: #ff4d94;
+            --dark-bg: #0f0c29;
+            --darker-bg: #0a081f;
+            --card-bg: rgba(25, 20, 60, 0.85);
+            --text-color: #f0f0f0;
+            --game-color: #00ff88;
+            --business-color: #ffb347;
+            --tech-color: #00d4ff;
+            --ai-color: #ff2a6d;
+            --shop-color: #9d4edd;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-color: var(--dark-bg);
+        }
+        
+        /* Background teknologi unik dan statis */
+        .tech-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                /* Pola circuit board */
+                linear-gradient(90deg, rgba(106, 17, 203, 0.05) 1px, transparent 1px) 0 0 / 50px 50px,
+                linear-gradient(rgba(106, 17, 203, 0.05) 1px, transparent 1px) 0 0 / 50px 50px,
+                /* Gradien utama */
+                radial-gradient(circle at 20% 80%, rgba(37, 117, 252, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 77, 148, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0f0c29 0%, #0a081f 100%);
+            background-blend-mode: overlay;
+        }
+        
+        .tech-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .tech-element {
+            position: absolute;
+            opacity: 0.1;
+        }
+        
+        .tech-element.cpu {
+            width: 100px;
+            height: 100px;
+            background: 
+                linear-gradient(45deg, transparent 48%, var(--primary-color) 49%, var(--primary-color) 52%, transparent 53%),
+                linear-gradient(-45deg, transparent 48%, var(--primary-color) 49%, var(--primary-color) 52%, transparent 53%);
+            background-size: 20px 20px;
+            border-radius: 10px;
+            top: 15%;
+            left: 10%;
+        }
+        
+        .tech-element.data {
+            width: 120px;
+            height: 80px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                var(--secondary-color) 10px,
+                var(--secondary-color) 12px
+            );
+            transform: rotate(30deg);
+            top: 70%;
+            right: 15%;
+        }
+        
+        .tech-element.binary {
+            font-family: monospace;
+            color: var(--accent-color);
+            font-size: 14px;
+            line-height: 1.2;
+            top: 30%;
+            right: 8%;
+            opacity: 0.15;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigasi */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            background-color: rgba(15, 12, 41, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(106, 17, 203, 0.3);
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(106, 17, 203, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+            animation: fadeInRight 1s ease;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        /* Foto & Video Slider */
+        .media-slider {
+            width: 350px;
+            height: 350px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            border: 3px solid var(--primary-color);
+        }
+        
+        .media-slides {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .media-slide {
+            width: 25%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--card-bg);
+        }
+        
+        .media-slide img, .media-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-controls {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        /* Sections umum */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        /* Minat & Hobi Section */
+        .interests {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .interest-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interest-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .interest-card.game {
+            border-color: var(--game-color);
+        }
+        
+        .interest-card.business {
+            border-color: var(--business-color);
+        }
+        
+        .interest-card.technology {
+            border-color: var(--tech-color);
+        }
+        
+        .interest-card.ai {
+            border-color: var(--ai-color);
+        }
+        
+        .interest-card.shop {
+            border-color: var(--shop-color);
+        }
+        
+        .interest-card i {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .interest-card.game i {
+            color: var(--game-color);
+        }
+        
+        .interest-card.business i {
+            color: var(--business-color);
+        }
+        
+        .interest-card.technology i {
+            color: var(--tech-color);
+        }
+        
+        .interest-card.ai i {
+            color: var(--ai-color);
+        }
+        
+        .interest-card.shop i {
+            color: var(--shop-color);
+        }
+        
+        .interest-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .interest-card p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+        
+        /* Modal untuk detail minat */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+        
+        .modal-header {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .modal-header i {
+            font-size: 2.5rem;
+        }
+        
+        /* Kenangan Section */
+        .memories-section {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            border: 1px solid rgba(106, 17, 203, 0.3);
+        }
+        
+        .memory-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .memory-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--text-color);
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .memory-btn:hover, .memory-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .memory-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .memory-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .memory-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .memory-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .memory-item:hover .memory-img img {
+            transform: scale(1.05);
+        }
+        
+        .memory-info {
+            padding: 20px;
+        }
+        
+        .memory-info h4 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        /* Tambah Kenangan Form */
+        .add-memory-form {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.5);
+        }
+        
+        /* Kontak Section */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-size: 2.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(106, 17, 203, 0.3);
+        }
+        
+        .contact-link span {
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .contact-link:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(106, 17, 203, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 30px;
+            text-align: center;
+            border-top: 1px solid rgba(106, 17, 203, 0.3);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Animasi */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsif */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .media-slider {
+                width: 300px;
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(15, 12, 41, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s ease;
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .contact-links {
+                gap: 15px;
+            }
+            
+            .contact-link {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .media-slider {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .interests {
+                grid-template-columns: 1fr;
+            }
+            
+            .memories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background teknologi unik (tidak bergerak) -->
+    <div class="tech-background"></div>
+    <div class="tech-elements">
+        <div class="tech-element cpu"></div>
+        <div class="tech-element data"></div>
+        <div class="tech-element binary">
+            01001000 01000101 01001100 01001100 01001111<br>
+            01010111 01001111 01010010 01001100 01000100<br>
+            00100000 01010100 01000101 01000011 01001000
+        </div>
+    </div>
+    
+    <!-- Header & Navigasi -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-user-astronaut"></i>MY_PORTFOLIO
+                </a>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#about"><i class="fas fa-user"></i> Tentang</a></li>
+                    <li><a href="#interests"><i class="fas fa-heart"></i> Minat</a></li>
+                    <li><a href="#memories"><i class="fas fa-images"></i> Kenangan</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Kontak</a></li>
+                </ul>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 id="typed-text"></h1>
+                    <h2>Pelajar Sekolah & Penggemar Teknologi</h2>
+                    <p>Saya seorang pelajar yang sangat antusias dengan teknologi, game, bisnis, dan AI. Website ini adalah tempat saya berbagi tentang diri saya, minat, kenangan, dan kontak untuk terhubung dengan orang lain.</p>
+                    <p>Saya memiliki seseorang yang spesial dalam hidup saya yang selalu memberi motivasi dan inspirasi proud of you katanya :) .</p>
+                    <button class="btn-primary" onclick="document.getElementById('interests').scrollIntoView({behavior: 'smooth'})">
+                        Jelajahi Minat Saya <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <div class="media-slider">
+                        <div class="media-slides" id="mediaSlides">
+                            <div class="media-slide">
+                                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Foto Kegiatan Coding">
+                            </div>
+                            <div class="media-slide">
+                                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Foto Kegiatan Gaming">
+                            </div>
+                            <div class="media-slide">
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Foto Belajar">
+                            </div>
+                            <div class="media-slide">
+                                <video controls>
+                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-teacher-explaining-geography-in-class-47856-large.mp4" type="video/mp4">
+                                    Hp Anda tidak mendukung video tag.sabarrr
+                                </video>
+                            </div>
+                        </div>
+                        <div class="slider-controls">
+                            <div class="slider-dot active" data-slide="0"></div>
+                            <div class="slider-dot" data-slide="1"></div>
+                            <div class="slider-dot" data-slide="2"></div>
+                            <div class="slider-dot" data-slide="3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Saya</h2>
+            <div style="max-width: 800px; margin: 0 auto; background-color: var(--card-bg); padding: 40px; border-radius: 20px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px;">Profil Pribadi</h3>
+                <p>Saya adalah pelajar sekolah yang sangat tertarik dengan perkembangan teknologi terkini. Selain belajar di sekolah, saya menghabiskan waktu untuk mengeksplorasi berbagai bidang yang menarik seperti game, bisnis digital, teknologi, AI, dan jual beli online.</p>
+                
+                <div style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="text-align: center; padding: 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <h4>Pelajar</h4>
+                        <p style="font-size: 0.9rem;">  belajar di sekolah dan mandiri</p>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <i class="fas fa-lightbulb" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <h4>Kreatif</h4>
+                        <p style="font-size: 0.9rem;">Selalu mencari ide dan solusi baru ( mungkin ) </p>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <i class="fas fa-rocket" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <h4>Ambisisus</h4>
+                        <p style="font-size: 0.9rem;">Memiliki tujuan dan impian yang besar, insyaAllah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Minat & Hobi Section -->
+    <section class="interests-section" id="interests">
+        <div class="container">
+            <h2 class="section-title">Minat & Hobi Saya</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Klik pada setiap kartu untuk melihat informasi lebih detail</p>
+            
+            <div class="interests">
+                <div class="interest-card game" data-modal="gameModal">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Game</h3>
+                    <p>Saya sangat suka bermain game, terutama game strategi dan RPG.</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: var(--game-color);"><i>Klik untuk info lebih lanjut</i></p>
+                </div>
+                
+                <div class="interest-card business" data-modal="businessModal">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Bisnis</h3>
+                    <p>Tertarik dengan dunia bisnis digital, startup, dan e-commerce.</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: var(--business-color);"><i>Klik untuk info lebih lanjut</i></p>
+                </div>
+                
+                <div class="interest-card technology" data-modal="techModal">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Teknologi</h3>
+                    <p>Mengikuti perkembangan teknologi terbaru dan belajar coding.</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: var(--tech-color);"><i>Klik untuk info lebih lanjut</i></p>
+                </div>
+                
+                <div class="interest-card ai" data-modal="aiModal">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI</h3>
+                    <p>Artificial Intelligence dan Machine Learning saya pelajari sedikit demi sedikit.</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: var(--ai-color);"><i>Klik untuk info lebih lanjut</i></p>
+                </div>
+                
+                <div class="interest-card shop" data-modal="shopModal">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Jual Beli</h3>
+                    <p>Aktif dalam jual beli online dan platform e-commerce.</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: var(--shop-color);"><i>Klik untuk info lebih lanjut</i></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Kenangan Section -->
+    <section class="memories" id="memories">
+        <div class="container">
+            <h2 class="section-title">Album Kenangan</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Tempat menyimpan foto-foto kenangan berharga dan momen spesial, (bukan berharga karena uang tapi karena momen yang ada didalamnnya)</p>
+            
+            <div class="memories-section">
+                <div class="memory-controls">
+                    <button class="memory-btn active" data-filter="all">Semua</button>
+                    <button class="memory-btn" data-filter="school">Sekolah</button>
+                    <button class="memory-btn" data-filter="friends">Teman</button>
+                    <button class="memory-btn" data-filter="hobbies">Hobi</button>
+                    <button class="memory-btn" data-filter="special">Spesial</button>
+                </div>
+                
+                <div class="memories-grid" id="memoriesGrid">
+                    <!-- Kenangan akan dimuat via JavaScript -->
+                </div>
+                
+                <!-- Form Tambah Kenangan -->
+                <div class="add-memory-form">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px;"><i class="fas fa-plus-circle"></i> Tambah Kenangan Baru</h3>
+                    <div class="form-group">
+                        <label for="memoryTitle">Judul Kenangan</label>
+                        <input type="text" id="memoryTitle" class="form-control" placeholder="Contoh: Liburan ke Pantai">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="memoryCategory">Kategori</label>
+                        <select id="memoryCategory" class="form-control">
+                            <option value="school">Sekolah</option>
+                            <option value="friends">Teman</option>
+                            <option value="hobbies">Hobi</option>
+                            <option value="special">Spesial</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="memoryImage">URL Gambar</label>
+                        <input type="text" id="memoryImage" class="form-control" placeholder="https://example.com/gambar.jpg">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="memoryDesc">Deskripsi</label>
+                        <textarea id="memoryDesc" class="form-control" rows="3" placeholder="Ceritakan tentang kenangan ini..."></textarea>
+                    </div>
+                    
+                    <button class="btn-primary" id="addMemoryBtn">
+                        <i class="fas fa-save"></i> Simpan Kenangan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Kontak Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Saya</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Jangan ragu untuk menghubungi saya melalui media sosial berikut:</p>
+            
+            <div class="contact-links">
+                <a href="https://wa.me/+6285219363466" target="_blank" class="contact-link" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="https://instagram.com/@mhaerul26" target="_blank" class="contact-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="mailto:mhaerul806@gmail.com" target="_blank" class="contact-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+                <a href="#" class="contact-link" title="Telegram" id="telegramBtn">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+            </div>
+            
+            <p style="text-align: center; margin-top: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <i class="fas fa-info-circle" style="color: var(--primary-color);"></i> 
+                Klik pada logo media sosial di atas untuk langsung terhubung dengan saya. Saya akan membalas pesan Anda secepat mungkin.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <i class="fas fa-user-astronaut"></i>MY_PORTFOLIO
+            </p>
+            <p>Website Portofolio Pribadi dengan Fitur Interaktif</p>
+            <p class="copyright">&copy; 2026 Dibuat dengan ❤cinta,website ini adalah tempat untuk berbagi cerita dan pengalaman</p>
+        </div>
+    </footer>
+    
+    <!-- Modal untuk detail minat -->
+    
+    <!-- Modal Game -->
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal('gameModal')">&times;</div>
+            <div class="modal-header">
+                <i class="fas fa-gamepad" style="color: var(--game-color);"></i>
+                <h2 style="color: var(--game-color);">Game Favorit Saya</h2>
+            </div>
+            
+            <p>Saya sangat menikmati bermain game sebagai cara untuk relaksasi dan mengasah kemampuan strategi. Berikut adalah beberapa game favorit saya:</p>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="color: var(--game-color); margin-bottom: 15px;">Game yang Sering Dimainkan:</h3>
+                <ul style="padding-left: 20px; margin-bottom: 20px;">
+                    <li><strong>super sus</strong> - Game FITNAH</li>
+                    <li><strong>PUBG Mobile</strong> - saya tidak main game ini</li>
+                    <li><strong>Genshin Impact</strong> - Ram hp cuma 3 pak</li>
+                    <li><strong>Free fire </strong> Bertempur dengan gaya </li>
+                    <li><strong>Minecraft</strong> - Sandbox dengan kreativitas tanpa batas</li>
+                </ul>
+                
+                <h3 style="color: var(--game-color); margin-bottom: 15px;">Manfaat Bermain Game:</h3>
+                <ul style="padding-left: 20px;">
+                    <li>Meningkatkan kemampuan problem-solving</li>
+                    <li>Melatih kerja sama tim</li>
+                    <li>Mengasah refleks dan koordinasi mata-tangan</li>
+                    <li>Memberikan hiburan dan mengurangi stres</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Bisnis -->
+    <div class="modal" id="businessModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal('businessModal')">&times;</div>
+            <div class="modal-header">
+                <i class="fas fa-chart-line" style="color: var(--business-color);"></i>
+                <h2 style="color: var(--business-color);">Minat dalam Bisnis</h2>
+            </div>
+            
+            <p>Saya tertarik dengan dunia bisnis, khususnya bisnis digital dan e-commerce. Saya percaya bahwa teknologi membuka peluang bisnis baru yang menarik.</p>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="color: var(--business-color); margin-bottom: 15px;">Bidang Bisnis yang Diminati:</h3>
+                <ul style="padding-left: 20px; margin-bottom: 20px;">
+                    <li><strong>E-commerce</strong> - Jual beli online melalui platform marketplace</li>
+                    <li><strong>Startup Teknologi</strong> - Membangun solusi digital untuk masalah sehari-hari</li>
+                    <li><strong>Dropshipping</strong> - Bisnis retail tanpa stok barang</li>
+                    <li><strong>Afiliasi Marketing</strong> - Menghasilkan komisi dari promosi produk</li>
+                    <li><strong>Content Creation</strong> - Membuat konten bernilai di platform digital</li>
+                </ul>
+                
+                <h3 style="color: var(--business-color); margin-bottom: 15px;">Prinsip Bisnis Saya:</h3>
+                <ul style="padding-left: 20px;">
+                    <li>Memberikan nilai tambah kepada pelanggan</li>
+                    <li>Memanfaatkan teknologi untuk efisiensi</li>
+                    <li>Belajar dari kegagalan dan terus berinovasi</li>
+                    <li>Membangun hubungan jangka panjang dengan mitra</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Teknologi -->
+    <div class="modal" id="techModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal('techModal')">&times;</div>
+            <div class="modal-header">
+                <i class="fas fa-laptop-code" style="color: var(--tech-color);"></i>
+                <h2 style="color: var(--tech-color);">Ketertarikan pada Teknologi</h2>
+            </div>
+            
+            <p>Saya selalu mengikuti perkembangan teknologi terbaru dan  belajar coding serta pengembangan web.</p>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="color: var(--tech-color); margin-bottom: 15px;">Teknologi yang Dipelajari:</h3>
+                <ul style="padding-left: 20px; margin-bottom: 20px;">
+                    <li><strong>Web Development</strong> - HTML, CSS, JavaScript</li>
+                    <li><strong>Python</strong> - Untuk otomatisasi dan data analysis</li>
+                    <li><strong>Mobile App Development</strong> - Flutter dan React Native</li>
+                    <li><strong>Database</strong> - MySQL dan Firebase</li>
+                    <li><strong>Cloud Computing</strong> - Dasar-dasar AWS dan Google Cloud</li>
+                </ul>
+                
+                <h3 style="color: var(--tech-color); margin-bottom: 15px;">Proyek Teknologi yang Pernah Dibuat:</h3>
+                <ul style="padding-left: 20px;">
+                    <li>Website portofolio pribadi (seperti ini!)</li>
+                    <li>Aplikasi to-do list sederhana</li>
+                    <li>Website kalkulator dengan JavaScript</li>
+                    <li>Bot Telegram untuk reminders</li>
+                    <li>Landing page untuk produk digital</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal AI -->
+    <div class="modal" id="aiModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal('aiModal')">&times;</div>
+            <div class="modal-header">
+                <i class="fas fa-robot" style="color: var(--ai-color);"></i>
+                <h2 style="color: var(--ai-color);">Artificial Intelligence</h2>
+            </div>
+            
+            <p>Artificial Intelligence (AI) dan Machine Learning (ML) adalah bidang yang sangat menarik bagi saya. Saya percaya AI akan mengubah cara kita hidup dan bekerja di masa depan.</p>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="color: var(--ai-color); margin-bottom: 15px;">Aspek AI yang Dipelajari:</h3>
+                <ul style="padding-left: 20px; margin-bottom: 20px;">
+                    <li><strong>Machine Learning</strong> - Algoritma pembelajaran mesin dasar</li>
+                    <li><strong>Neural Networks</strong> - Dasar-dasar jaringan saraf tiruan</li>
+                    <li><strong>Natural Language Processing</strong> - Pemrosesan bahasa alami</li>
+                    <li><strong>Computer Vision</strong> - Pengenalan gambar dan video</li>
+                    <li><strong>AI Ethics</strong> - Etika dalam pengembangan AI</li>
+                </ul>
+                
+                <h3 style="color: var(--ai-color); margin-bottom: 15px;">Aplikasi AI yang Menarik:</h3>
+                <ul style="padding-left: 20px;">
+                    <li>Chatbot dan asisten virtual</li>
+                    <li>Sistem rekomendasi (seperti di Netflix dan YouTube)</li>
+                    <li>Kendaraan otonom</li>
+                    <li>Diagnosis medis berbantuan AI</li>
+                    <li>Generative AI untuk konten kreatif</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Jual Beli -->
+    <div class="modal" id="shopModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeModal('shopModal')">&times;</div>
+            <div class="modal-header">
+                <i class="fas fa-shopping-cart" style="color: var(--shop-color);"></i>
+                <h2 style="color: var(--shop-color);">Jual Beli Online</h2>
+            </div>
+            
+            <p>Saya aktif dalam jual beli online melalui berbagai platform e-commerce. Ini adalah cara saya belajar tentang bisnis sekaligus mendapatkan pengalaman berwirausaha.</p>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="color: var(--shop-color); margin-bottom: 15px;">Barang yang Dijual:</h3>
+                <ul style="padding-left: 20px; margin-bottom: 20px;">
+                    <li><strong>Aksesoris Gadget</strong> - Case handphone, charger, earphone</li>
+                    <li><strong>Produk Digital</strong> - Template, ebook, asset kreatif</li>
+                    <li><strong>Pakaian</strong> - Kaos desain unik dan limited edition</li>
+                    <li><strong>Perangkat Elektronik</strong> - Second hand dengan kualitas baik</li>
+                    <li><strong>Produk Hobi</strong> - Merchandise game dan anime</li>
+                </ul>
+                
+                <h3 style="color: var(--shop-color); margin-bottom: 15px;">Platform yang Digunakan:</h3>
+                <ul style="padding-left: 20px;">
+                    <li>Tiktok</li>
+                    <li>Telegram</li>
+                    <li>Instagram </li>
+                    <li>WhatsApp Business</li>
+                    <li>Facebook </li>
+                </ul>
+                
+                <div style="margin-top: 30px; padding: 20px; background-color: rgba(157, 78, 221, 0.1); border-radius: 10px;">
+                    <h4 style="color: var(--shop-color); margin-bottom: 10px;">Minat Beli?</h4>
+                    <p>Jika Anda tertarik dengan barang yang saya jual, hubungi saya melalui WhatsApp atau Instagram yang tersedia di halaman kontak.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Data awal untuk kenangan
+        const initialMemories = [
+            {
+                id: 1,
+                title: "kegiatan sekolah",
+                category: "school",
+                image: "https://photos.google.com/share/AF1QipOv6vkMmP5-1gQS2lMftVqe-ZxUXyWraqoX21Wvd3h5Z_8IRmkjPIVMgj4EHqc8Cg?key=bndqblVQdVR0dVVvZXM5WTNqSF9Vd2t2SThEY1B3",
+                description: "Memenangkan lomba bersama teman teman sekolah tahun 2025"
+            },
+            {
+                id: 2,
+                title: "Foto bersama teman sekelas",
+                category: "friends",
+                image: "https://photos.google.com/share/AF1QipNk0ZKQH4fx03jcDO_8mIyYs_KmoWgWUpDQmtTkLb_t2Oa7E6QGuSBON7fUeu9pmA?key=SGJxV3VXeHljeWxQQTF2ZzFTQURfUkJVTURlVGRR",
+                description: "Foto bersama dengan teman teman sekelas , yang selalu membantu dalam hal kebaikan ' aseek"
+            },
+            {
+                id: 3,
+                title: "Robotika",
+                category: "hobbies",
+                image: "https://photos.google.com/share/AF1QipO_MsX7n3MSvRHmqk-_bkwGIv0cLD3R2f-ku1NhcCcIS70fKrAHlceRughY_q34Vg?key=WmNPV2w0Mi0yODRMYlhXdFR3QWNqMi1HZXNhcXV3",
+                description: "Berpartisipasi dalam kegiatan ekstrakulikuler robotika sekolah"
+            },
+            {
+                id: 4,
+                title: "spesial?",
+                category: "special",
+                image: "https://photos.google.com/share/AF1QipMCUtEKx5lWF8yEXZHsoiyhw2Hp21BlRCgETBF2sVsi2TxtSHs9lQHog66GQGFYGQ?key=LXpRcWg1d3FrUjhVaktIX2tQNUJRaGdzZDRtUkN3",
+                description:"entah kenapa spesial"
+            },
+            {
+                id: 5,
+                title: "Keluarga❤",
+                category: "spesial",
+                image: "https://photos.google.com/share/AF1QipOi5fiCqbVu5ZUkkpJX4w3GWLH0yeu_BT17qCJEiBa4VK3z5yetEhjZSxzi_hJnGQ?key=U29MY0s5SUxzQnRnamxPR01QZ2M0a09tU0JiU2x3",
+                description: "Keluarga❤ yang selalu berbahagiaa, Amin"
+            },
+            {
+                id: 6,
+                title: "mas mas batik",
+                category: "friends",
+                image: "https://photos.google.com/share/AF1QipPIjA5kXTH0K1N3vnrjzWYpCTZat4CLTKnJDhX-ZCmw3FPXgz4ttTN-LjIsD_3hvw?key=NjZCR094UWcwNGlXbVVlMkd3VnNwaEd4ME5VejhR",
+                description: "Nongkrong santai sambil diskusi tentang masa depan,eh ada kamera"
+            }
+        ];
+        
+        // Elemen DOM
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const header = document.getElementById('header');
+        const mediaSlides = document.getElementById('mediaSlides');
+        const sliderDots = document.querySelectorAll('.slider-dot');
+        const typedText = document.getElementById('typed-text');
+        const memoriesGrid = document.getElementById('memoriesGrid');
+        const memoryBtns = document.querySelectorAll('.memory-btn');
+        const addMemoryBtn = document.getElementById('addMemoryBtn');
+        const interestCards = document.querySelectorAll('.interest-card');
+        const telegramBtn = document.getElementById('telegramBtn');
+        
+        // Typing Effect
+        const texts = [
+            "Halo, Saya Pelajar Sekolah",
+            "Penggemar Teknologi & Game",
+            "Pecinta AI & Bisnis Digital",
+            "Selamat Datang di Portofolio Saya"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeEffect() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typedText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(typeEffect, 500);
+            } else {
+                setTimeout(typeEffect, isDeleting ? 50 : 100);
+            }
+        }
+        
+        // Slider foto/video
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+            if (n >= mediaSlides.children.length) n = 0;
+            if (n < 0) n = mediaSlides.children.length - 1;
+            
+            mediaSlides.style.transform = `translateX(-${n * 25}%)`;
+            
+            sliderDots.forEach(dot => dot.classList.remove('active'));
+            sliderDots[n].classList.add('active');
+            
+            currentSlide = n;
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        // Load kenangan dari localStorage atau data awal
+        function loadMemories() {
+            let memories = JSON.parse(localStorage.getItem('memories'));
+            
+            if (!memories || memories.length === 0) {
+                memories = initialMemories;
+                localStorage.setItem('memories', JSON.stringify(memories));
+            }
+            
+            displayMemories(memories);
+        }
+        
+        // Tampilkan kenangan
+        function displayMemories(memories) {
+            memoriesGrid.innerHTML = '';
+            
+            memories.forEach(memory => {
+                const memoryItem = document.createElement('div');
+                memoryItem.className = 'memory-item';
+                memoryItem.setAttribute('data-category', memory.category);
+                
+                memoryItem.innerHTML = `
+                    <div class="memory-img">
+                        <img src="${memory.image}" alt="${memory.title}">
+                    </div>
+                    <div class="memory-info">
+                        <h4>${memory.title}</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">${memory.description}</p>
+                        <p style="font-size: 0.8rem; margin-top: 10px; color: var(--primary-color);">
+                            ${getCategoryName(memory.category)}
+                        </p>
+                    </div>
+                `;
+                
+                memoriesGrid.appendChild(memoryItem);
+            });
+        }
+        
+        // Filter kenangan berdasarkan kategori
+        function filterMemories(category) {
+            const memories = JSON.parse(localStorage.getItem('memories')) || initialMemories;
+            
+            if (category === 'all') {
+                displayMemories(memories);
+            } else {
+                const filteredMemories = memories.filter(memory => memory.category === category);
+                displayMemories(filteredMemories);
+            }
+        }
+        
+        // Tambah kenangan baru
+        function addMemory() {
+            const title = document.getElementById('memoryTitle').value;
+            const category = document.getElementById('memoryCategory').value;
+            const image = document.getElementById('memoryImage').value;
+            const description = document.getElementById('memoryDesc').value;
+            
+            if (!title || !image) {
+                alert('Judul dan URL gambar harus diisi!');
+                return;
+            }
+            
+            // Validasi URL gambar
+            if (!isValidURL(image)) {
+                alert('URL gambar tidak valid!');
+                return;
+            }
+            
+            const memories = JSON.parse(localStorage.getItem('memories')) || initialMemories;
+            const newMemory = {
+                id: memories.length + 1,
+                title,
+                category,
+                image,
+                description
+            };
+            
+            memories.push(newMemory);
+            localStorage.setItem('memories', JSON.stringify(memories));
+            
+            // Reset form
+            document.getElementById('memoryTitle').value = '';
+            document.getElementById('memoryImage').value = '';
+            document.getElementById('memoryDesc').value = '';
+            
+            // Tampilkan ulang kenangan
+            displayMemories(memories);
+            
+            alert('Kenangan berhasil ditambahkan!');
+        }
+        
+        // Helper functions
+        function getCategoryName(category) {
+            const categories = {
+                'school': 'Sekolah',
+                'friends': 'Teman',
+                'hobbies': 'Hobi',
+                'special': 'Spesial'
+            };
+            return categories[category] || 'Lainnya';
+        }
+        
+        function isValidURL(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+        
+        // Event Listeners
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Dot controls for slider
+        sliderDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                showSlide(slideIndex);
+            });
+        });
+        
+        // Auto slide
+        let slideInterval = setInterval(nextSlide, 5000);
+        
+        // Pause slider on hover
+        const slider = document.querySelector('.media-slider');
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+        
+        // Filter kenangan
+        memoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                memoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                filterMemories(filter);
+            });
+        });
+        
+        // Tambah kenangan
+        addMemoryBtn.addEventListener('click', addMemory);
+        
+        // Interest cards click
+        interestCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-modal');
+                openModal(modalId);
+            });
+        });
+        
+        // Telegram button
+        telegramBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Telegram: @username_telegram (ganti dengan username Telegram Anda)');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            typeEffect();
+            showSlide(0);
+            loadMemories();
+            
+            // Set default image URLs for memory form
+            document.getElementById('memoryImage').value = 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80';
+        });
+    </script>
+</body>
+</html>
